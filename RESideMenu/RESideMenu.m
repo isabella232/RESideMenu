@@ -541,7 +541,21 @@
 			return NO;
 		}
 	}
-
+    else if (self.interactivePopGestureRecognizerEnabled && [self.contentViewController isKindOfClass:[UITabBarController class]]) {
+        UITabBarController *tabBarController = (UITabBarController *)self.contentViewController;
+        if ([[tabBarController selectedViewController] isKindOfClass:[UINavigationController class]]) {
+            UINavigationController *navigationController = (UINavigationController *)[tabBarController selectedViewController];
+            if (navigationController.viewControllers.count > 1) {
+                return NO;
+            }
+            
+            NSString *lastClassName = NSStringFromClass(self.childViewControllers.lastObject.classForCoder);
+            if ([self.topControllersNames containsObject:lastClassName]) {
+                return NO;
+            }
+        }
+    }
+    
 	if (self.panFromEdge && [gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && !self.visible) {
 		CGPoint point = [touch locationInView:gestureRecognizer.view];
 		if (point.x < 20.0 || point.x > self.view.frame.size.width - 20.0) {

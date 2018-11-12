@@ -80,6 +80,7 @@ FOUNDATION_EXPORT const unsigned char RESideMenuVersionString[];
 @property (assign, readwrite, nonatomic) IBInspectable BOOL bouncesHorizontally;
 @property (assign, readwrite, nonatomic) UIStatusBarStyle menuPreferredStatusBarStyle;
 @property (assign, readwrite, nonatomic) IBInspectable BOOL menuPrefersStatusBarHidden;
+@property (strong, readwrite, nonatomic) NSArray <NSString *> *topControllersNames;
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController
              leftMenuViewController:(UIViewController *)leftMenuViewController
